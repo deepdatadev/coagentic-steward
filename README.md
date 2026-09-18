@@ -9,10 +9,24 @@
 | **Team** | CoAgentic Markets (solo) |
 | **Primary track** | **Build a Market** — X Layer · tokenized stocks / RWA |
 | **Participation route** | **Remote Build** |
-| **Product** | **Steward** — a guarded, attested tokenized-equity index on X Layer |
+| **Product** | **Steward** — a liquidity-aware tokenized-equity index operated by an autonomous agent on X Layer |
 | **Live product** | https://coagentic.markets/research |
 | **Demo video** | _(link — pending)_ |
 | **Deep commit trail** | private repo, review-team access on request |
+
+## As submitted — OKX Dev Day 2026 build round
+
+_The product description on file with OKX, verbatim from the application. Reproduced here so the dossier matches what the judges hold._
+
+> **Steward — a liquidity-aware tokenized-equity index operated by an autonomous agent on X Layer.**
+>
+> Tokenized equities exist on X Layer, but a contract address is not a usable portfolio: liquidity is uneven, off-hours prices can drift, and naive target-weight rebalancing can buy a weakening asset. Steward will manage an equity-forward basket of SPCXx, NVDAx, TSLAx, CRCLx, AAPLx and MSTRx, with a small ETH/OKB satellite, from a dedicated OKX Agentic Wallet.
+>
+> Its differentiator is CoAgentic-aware rebalancing. The Tradability Oracle blocks untradable legs; deterministic macro, turnover and concentration controls can defer a rebalance; and a channel-phase model plus Bull/Bear/Risk Council challenges each proposed trade. In one live-data deliberation, the planner proposed buying approximately $26 of underweight OKB, but the phase model classified OKB as Breaking while SPCXx and TSLAx were in Expansion, prompting the Council to recommend staging the deployment rather than buying mechanically.
+>
+> This is a graduation, not a greenfield build. Already working are the derived index and paper NAV, public Oracle and Steward dashboards, multi-agent Council, macro gate, phase classifier, and a successful on-chain ETH execution path on X Layer through OKX OnchainOS. Markets, Council and Steward (#12856) are three QA-approved OKX.AI ASP identities. Equity-screen snapshots and qualifying-universe identities are already hashed and anchored through an X Layer testnet registry.
+>
+> During build week we will connect final guarded approval to the multi-leg executor, verify a small live basket rebalance, expose the Oracle through x402, and extend provenance from the source screen through membership, weights, verdict and rebalance.
 
 ## What Steward is
 
