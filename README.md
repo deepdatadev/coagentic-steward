@@ -8,7 +8,7 @@
 |---|---|
 | **Team** | CoAgentic Markets (solo) |
 | **Primary track** | **Build a Market** — X Layer · tokenized stocks / RWA |
-| **Participation route** | **Remote Build** |
+| **Participation route** | **In Person** (auto-entered to Remote Build if not selected — per OKX) |
 | **Product** | **Steward** — a liquidity-aware tokenized-equity index operated by an autonomous agent on X Layer |
 | **Live product** | https://coagentic.markets/research |
 | **Demo video** | _(link — pending)_ |
@@ -51,10 +51,32 @@ The submission pack is a **publication, not a locker.** So this repo carries the
 
 ## How to verify — *don't trust, verify*
 
-- **Content hashes** — the published Sentinel hypothesis carries a canonical content hash; recompute it from the live feed and compare. `curl https://tv.coagentic.markets/api/public/sentinel` → `hypothesisHash` / `candidate.hash`. _(verifier snippet + current hash: pending.)_
-- **On-chain track record** — the realized round-trips are real X Layer transactions on the populitech book. Open them:
-  - ETH round-trip (Aug 11→18): [`0x30894b01…`](https://www.oklink.com/x-layer/tx/0x30894b0199c8d0af386c5b45204e373f1c1590b6e809bd49c3464689d570f835)
-  - ETH de-risk (Sep 10): [`0xdadfce08…`](https://www.oklink.com/x-layer/tx/0xdadfce080f29b4e381455058aafc203977e250b0235e9efe42691d1b757e9edc)
+- **Content hashes** — the published Sentinel hypothesis carries a canonical content hash (`sha256` over the sorted-key JSON of the hypothesis core). It proves *content identity*, not publication time. Recompute it from the live feed and compare — no key, no trust required:
+
+  Current published hash: **`0xf08e9417cff1787f6e6db20e7f1fdfe0840dd555abd0e192cc5b42f5bf1b9763`**
+
+  ```js
+  // node verify.mjs — recomputes the hash from the live feed and compares.
+  import { createHash } from 'crypto';
+  const canonical = (v) =>
+    Array.isArray(v) ? `[${v.map(canonical).join(',')}]`
+    : (v && typeof v === 'object')
+      ? `{${Object.keys(v).sort().map(k => `${JSON.stringify(k)}:${canonical(v[k])}`).join(',')}}`
+      : JSON.stringify(v);
+  const sha = (v) => `0x${createHash('sha256').update(canonical(v)).digest('hex')}`;
+  const feed = await (await fetch('https://tv.coagentic.markets/api/public/sentinel')).json();
+  const h = feed.hypothesis, version = Number(h?.schemaVersion ?? 1);
+  const KEYS = version >= 2
+    ? ['schemaVersion','posture','confidence','published','expires','expects','falsifier','author','watching','source']
+    : ['posture','confidence','published','expires','expects','falsifier'];
+  const core = Object.fromEntries(KEYS.map(k => [k, h?.[k] ?? (k === 'schemaVersion' ? version : null)]));
+  console.log(sha(core) === feed.hypothesisHash ? 'MATCH ' + feed.hypothesisHash : 'MISMATCH');
+  ```
+
+  The daily Council `candidate.hash` is computed the same way over the candidate object. The hash changes when the hypothesis is re-published, so a future reader should compare the snippet's output against the feed's live `hypothesisHash`, not against the pinned value above.
+- **On-chain track record** — the realized round-trips are real X Layer transactions on the Steward book. Open them:
+  - ETH round-trip (Aug 11→18): [`0x30894b01…`](https://www.oklink.com/x-layer/evm/tx/0x30894b0199c8d0af386c5b45204e373f1c1590b6e809bd49c3464689d570f835)
+  - ETH de-risk (Sep 10): [`0xdadfce08…`](https://www.oklink.com/x-layer/evm/tx/0xdadfce080f29b4e381455058aafc203977e250b0235e9efe42691d1b757e9edc)
 - **Live surfaces** — open them and watch them update:
   - Steward / TEI rebalance + Council verdict — https://coagentic.markets/research/tei
   - Sentinel Macro Tape — https://coagentic.markets/research/macro
