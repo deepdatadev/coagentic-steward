@@ -11,7 +11,7 @@
 | **Participation route** | **In Person** (auto-entered to Remote Build if not selected — per OKX) |
 | **Product** | **Steward** — a liquidity-aware tokenized-equity index operated by an autonomous agent on X Layer |
 | **Live product** | https://coagentic.markets/research |
-| **Demo video** | _(link — pending)_ |
+| **Demo video** | https://youtu.be/mmwe8yVtfok |
 | **Deep commit trail** | private repo, review-team access on request |
 
 ## As submitted — OKX Dev Day 2026 build round
@@ -46,7 +46,7 @@ The submission pack is a **publication, not a locker.** So this repo carries the
 | Safeguards threat model (metadata-injection / poisoning) | ✅ published |
 | One live Council-gated multi-leg rebalance on X Layer (tx-linked) | ⬜ Sep 19–25 |
 | Oracle API x402 metering | ⬜ Sep 19–25 |
-| 2–4 min demo video | ⬜ Sep 19–25 |
+| 2–4 min demo video | ✅ [published](https://youtu.be/mmwe8yVtfok) |
 | This evidence dossier | 🟢 in progress |
 
 ## How to verify — *don't trust, verify*
