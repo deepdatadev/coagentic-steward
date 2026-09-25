@@ -12,6 +12,7 @@
 | **Product** | **Steward** — a liquidity-aware tokenized-equity index operated by an autonomous agent on X Layer |
 | **Live product** | https://coagentic.markets/research |
 | **Demo video** | https://youtu.be/mmwe8yVtfok |
+| **Launch post** | https://x.com/COAGENTICDEV/status/2103558553693024691 |
 | **Deep commit trail** | private repo, review-team access on request |
 
 ## As submitted — OKX Dev Day 2026 build round
